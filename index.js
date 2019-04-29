@@ -5,8 +5,8 @@
 
 import {AppRegistry} from 'react-native';
 //import App from './App';
-import Payment from './Payment';
+import payment from './payment';
 import Query from './Query';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => Query);
+AppRegistry.registerComponent(appName, () => payment);

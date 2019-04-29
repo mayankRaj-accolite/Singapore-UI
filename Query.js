@@ -4,7 +4,8 @@ Text,
 TouchableOpacity,
 View,
 Image,
-FlatList
+FlatList,
+
 } from "react-native";
 
 import styles from "./styles";
@@ -37,12 +38,12 @@ selectedButton:"",
 key:'3'
 },
 {
-  question:"We have few queries before4",
-  button1:"YES",
-  button2:"NO",
-  selectedButton:"",
-  key:'4'
-  },
+question:"We have few queries before4",
+button1:"YES",
+button2:"NO",
+selectedButton:"",
+key:'4'
+},
 ],
 relations: [
 { name: "YES", key: 1 },
@@ -85,7 +86,7 @@ _renderRelations = (item) => {
 return this.state.relations.map((relation, index) => {
 return (
 <TouchableOpacity key={index} style={this._getButtonStyle(relation,item).button} onPress={()=>{ this._onClickRelation(relation, item) }}>
-  <Text style={this._getButtonStyle(relation,item).buttonText}>{relation.name}</Text>
+<Text style={this._getButtonStyle(relation,item).buttonText}>{relation.name}</Text>
 </TouchableOpacity>
 );
 });
@@ -94,8 +95,11 @@ return (
 Questions=()=>{
 return(
 <View>
+
 <FlatList
 showsVerticalScrollIndicator={false}
+ref={ref => this.flatList = ref}
+onContentSizeChange={() => this.flatList.scrollToEnd({animated: true})}
 extraData = {this.state.listData}
 data={this.state.listData.slice(0,this.state.count)}
 renderItem={({ item, index }) => (
@@ -115,6 +119,7 @@ borderBottomWidth: 0.5,
 </View>
 )}
 /> 
+
 </View>
 );
 }
